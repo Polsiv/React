@@ -71,8 +71,8 @@ function Tasks() {
           {tasks.map((task, index) => (
             <li key={index}>
               <p>{task}</p>
-              <button onClick={() => editTask(index)}>✏️ Editar</button>
-              <button onClick={() => deleteTask(index)}>❌ Eliminar</button>
+              <button onClick={() => editTask(index)}>Editar</button>
+              <button onClick={() => deleteTask(index)}>Eliminar</button>
             </li>
           ))}
         </ul>
