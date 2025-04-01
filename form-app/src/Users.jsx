@@ -7,6 +7,7 @@ function Usuarios() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // toca ponerle timeout porque el tiempo de respuesta de la api es casi nulo.
     setTimeout(() => {
         fetch("https://jsonplaceholder.typicode.com/users")
         .then((response) => response.json())

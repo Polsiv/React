@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
+import "./Tasks.css"; 
 
 function Tasks() {
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
-  const [editingIndex, setEditingIndex] = useState(null); // Estado para la edición
+  const [editingIndex, setEditingIndex] = useState(null);
 
-  // Cargar tareas desde el localStorage
   useEffect(() => {
     const savedTasks = JSON.parse(localStorage.getItem("tasks"));
     if (savedTasks) {
@@ -13,7 +13,6 @@ function Tasks() {
     }
   }, []);
 
-  // Guardar tareas en el localStorage
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
@@ -23,13 +22,11 @@ function Tasks() {
     if (task.trim() === "") return;
 
     if (editingIndex !== null) {
-      // Editar tarea existente
       const updatedTasks = [...tasks];
       updatedTasks[editingIndex] = task;
       setTasks(updatedTasks);
       setEditingIndex(null);
     } else {
-      // Agregar nueva tarea
       setTasks([...tasks, task]);
     }
 
@@ -50,12 +47,12 @@ function Tasks() {
   };
 
   return (
-    <div>
-      <h2>LISTA TAREAS</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="task-container">
+      <h2>Lista de Tareas</h2>
+      <form onSubmit={handleSubmit} className="task-form">
         <input
           type="text"
-          placeholder="Escribe tu tarea"
+          placeholder="Escribe la tareita"
           value={task}
           onChange={(e) => setTask(e.target.value)}
         />
@@ -65,19 +62,25 @@ function Tasks() {
       </form>
 
       {tasks.length === 0 ? (
-        <p>No hay tareas</p>
+        <p className="no-tasks">No hay tareas pendientes</p>
       ) : (
-        <ul>
+        <ul className="task-list">
           {tasks.map((task, index) => (
-            <li key={index}>
-              <p>{task}</p>
-              <button onClick={() => editTask(index)}>Editar</button>
-              <button onClick={() => deleteTask(index)}>Eliminar</button>
+            <li key={index} className="task-item">
+              <span className="task-text">{task}</span>
+              <div className="task-buttons">
+                <button className="edit" onClick={() => editTask(index)}>Editar</button>
+                <button className="delete" onClick={() => deleteTask(index)}>Eliminar</button>
+              </div>
             </li>
           ))}
         </ul>
       )}
-      <button onClick={cleanTasks}>Limpiar tareas</button>
+      {tasks.length > 0 && (
+        <button className="clear-btn" onClick={cleanTasks}>
+          Limpiar tareas
+        </button>
+      )}
     </div>
   );
 }

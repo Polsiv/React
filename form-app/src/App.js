@@ -7,8 +7,8 @@ function App() {
   return (
     <div className="App">
       <Usuarios/>
-      <Formulario/>
       <Tasks/>
+      <Formulario/>
     </div>
   );
 }
