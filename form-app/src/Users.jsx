@@ -37,6 +37,12 @@ function Usuarios() {
             <p className="usuarios-info">
               <strong>Usuario:</strong> {user.username}
             </p>
+            <p className="usuarios-info">
+              <strong>Número:</strong> {user.phone}
+            </p>
+            <p className="usuarios-info">
+              <strong>Correo:</strong> {user.email}
+            </p>
           </li>
         ))}
       </ul>
