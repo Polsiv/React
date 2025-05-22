@@ -1,0 +1,63 @@
+body.light {
+    --card-bg: #ffffff;
+    --text-color: #000000;
+  }
+  
+body.dark {
+    --card-bg: #1e1e1e;
+    --text-color: #f0f0f0;
+  }
+  
+  .character-detail {
+    max-width: 600px;
+    margin: 3rem auto;
+    background-color: var(--card-bg, #ffffff);
+    color: var(--text-color, #000000);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .character-detail img {
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+
+  }
+  
+  .character-detail h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .character-detail p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+  
+  .sayings {
+    margin-top: 2rem;
+  }
+  
+  .sayings h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .sayings ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sayings li {
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Optional: make the quotes stand out */
+  .sayings li::before {
+    content: "💬 ";
+    margin-right: 5px;
+  }
+  

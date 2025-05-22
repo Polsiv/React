@@ -1,0 +1,59 @@
+.aboutus-container {
+    padding: 4rem;
+    text-align: center;
+  }
+  
+  .aboutus-cards {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .aboutus-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 250px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+    animation-delay: var(--delay);
+  }
+
+  .aboutus-card h2, p{
+    padding: 10px;
+  }
+  
+  /* para animar los keyframes */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .aboutus-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  
+
+body.light {
+    color: #000;
+    .aboutus-card {
+        background: #ffffff;
+    }
+  }
+  
+body.dark {
+    color: #fff;
+    .aboutus-card {
+        background: #242424;
+    }
+  }

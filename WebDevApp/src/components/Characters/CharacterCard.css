@@ -1,0 +1,13 @@
+body.light h2 {
+    color: #000;
+  }
+  
+body.dark h2 {
+    color: #fff;
+  }
+
+body.dark .character-card{
+    background-color: #202020;
+    color: #fff;
+    border: 2px solid #7e7e7e; 
+}
