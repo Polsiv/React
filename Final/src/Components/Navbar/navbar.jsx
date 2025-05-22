@@ -67,7 +67,7 @@ export const Navbar = ({ carrito }) => {
       </button>
 
       <button className="cart-icon-container" onClick={() => {
-          goToCart; 
+          goToCart(); 
           setMobileMenuOpen(false);
         }}>
           <span className="cart-icon">🛒 Mi carrito</span>
