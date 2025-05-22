@@ -18,6 +18,7 @@ export const Navbar = ({ carrito }) => {
     setShowDropdown(false);
   };
 
+
   const goToCart = () => {
     navigate("/cart");
   };
@@ -59,18 +60,26 @@ export const Navbar = ({ carrito }) => {
 
     <div className={`navbar-actions ${mobileMenuOpen ? "open" : "" }`}>
     
-      <button className="history-button" id="fav" onClick={() => navigate("/favorite")}>
+      <button className="history-button" id="fav" onClick={() => {
+        navigate("/favorite");
+        setMobileMenuOpen(false);}}>
         🤍 Favoritos
       </button>
 
-      <button className="cart-icon-container" onClick={goToCart}>
+      <button className="cart-icon-container" onClick={() => {
+          goToCart; 
+          setMobileMenuOpen(false);
+        }}>
           <span className="cart-icon">🛒 Mi carrito</span>
             {carrito.length > 0 && (
           <span className="cart-badge">{carrito.length}</span>
           )}
       </button>
 
-      <button className="history-button" onClick={() => navigate("/history")}>
+      <button className="history-button" onClick={() => {
+        navigate("/history");
+        setMobileMenuOpen(false);
+        }}>
         📋 Historial
       </button>
 
