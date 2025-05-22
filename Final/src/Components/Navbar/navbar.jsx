@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect} from "react";
 
-
-export const Navbar = ({ carrito }) => {
+export const Navbar = ({ carrito, favorito }) => {
   const [currentUser, setCurrentUser] = useState(
     localStorage.getItem("currentUser")
   );
@@ -17,7 +16,6 @@ export const Navbar = ({ carrito }) => {
     navigate("/login");
     setShowDropdown(false);
   };
-
 
   const goToCart = () => {
     navigate("/cart");
@@ -60,19 +58,22 @@ export const Navbar = ({ carrito }) => {
 
     <div className={`navbar-actions ${mobileMenuOpen ? "open" : "" }`}>
     
-      <button className="history-button" id="fav" onClick={() => {
+      <button className="icon-container" id="fav" onClick={() => {
         navigate("/favorite");
         setMobileMenuOpen(false);}}>
-        🤍 Favoritos
+          <span className="fav-icon">🤍 Favoritos</span>
+            {favorito.length > 0 && (
+          <span className="badge">{favorito.length}</span>
+          )}
       </button>
 
-      <button className="cart-icon-container" onClick={() => {
+      <button className="icon-container" onClick={() => {
           goToCart(); 
           setMobileMenuOpen(false);
         }}>
           <span className="cart-icon">🛒 Mi carrito</span>
             {carrito.length > 0 && (
-          <span className="cart-badge">{carrito.length}</span>
+          <span className="badge">{carrito.length}</span>
           )}
       </button>
 

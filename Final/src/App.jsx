@@ -5,11 +5,11 @@ import { Navbar } from "./Components/Navbar/navbar";
 import "./App.css";
 import { useNavigate, Routes, Route } from "react-router-dom";
 import CartPage from "./Components/CartPage/CartPage";
-import ProductDetail from "./Components/ProductDetail/ProductDetail";
-import CheckoutForm from "./Components/Form/CheckoutForm";
-import Bill from "./Components/Bill/Bill"
-import History from "./Components/History/History";
-import Favorite from "./Components/Favorite/Favorite"
+import ProductDetail from "./Pages/ProductDetail/ProductDetail";
+import CheckoutForm from "./Pages/Form/CheckoutForm";
+import Bill from "./Pages/Bill/Bill"
+import History from "./Pages/History/History";
+import Favorite from "./Pages/Favorite/Favorite"
 
 function App() {
     const navigate = useNavigate();
@@ -44,13 +44,19 @@ function App() {
             }
         });
     };
-
-
+    
     const agregarFavoritos = (producto) => {
-      if (!favoritos.some((p) => p.id === producto.id)) {
-        setFavoritos([...favoritos, producto]);
-      }
-    }
+      setFavoritos((prev) => {
+        const existe = prev.find((p) => p.id === producto.id);
+        if (existe) {
+          return prev.map((p) =>
+            p.id === producto.id ? { ...p, cantidad: p.cantidad + 1 } : p
+          );
+        } else {
+          return [...prev, { ...producto, cantidad: 1 }];
+        }
+      });
+    };
 
     const eliminarFavoritos = (id) => {
       const nuevosFavoritos = favoritos.filter((p) => p.id !== id);
@@ -58,10 +64,9 @@ function App() {
       localStorage.setItem("favoritos", JSON.stringify(nuevosFavoritos));
     };
 
-
     return (
       <div className="app">
-          <Navbar carrito={carrito} />
+          <Navbar carrito={carrito} favorito={favoritos}/>
           <main className="main-content">
               <Routes>
                   <Route
@@ -101,7 +106,7 @@ function App() {
                     element={<CartPage carrito={carrito} setCarrito={setCarrito} />}
                   />
                   <Route path="/producto/:id" element=
-                  {<ProductDetail agregarFavoritos={agregarFavoritos} agregarAlCarrito={agregarAlCarrito} />}
+                  {<ProductDetail agregarFavoritos={agregarFavoritos} agregarAlCarrito={agregarAlCarrito}  />}
                    />
                   <Route path="/form"
                     element = {

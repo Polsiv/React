@@ -97,22 +97,21 @@ body.click-outside-listener.active::after {
   display: block;
 }
 
-.cart-icon-container {
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-
-}
-
-.cart-icon-container:hover {
+.icon-container:hover {
   transform: scale(1.01);
 }
 
-.cart-badge {
+.icon-container {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.badge {
   position: absolute;
   top: -8px;
   right: -8px;
-  background-color: #b8473a;
+  background-color: #f70b65;
   color: white;
   border-radius: 50%;
   width: 20px;
