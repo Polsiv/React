@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 
 
 export const Navbar = ({ carrito }) => {
@@ -8,6 +8,7 @@ export const Navbar = ({ carrito }) => {
     localStorage.getItem("currentUser")
   );
   const [showDropdown, setShowDropdown] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -48,16 +49,25 @@ export const Navbar = ({ carrito }) => {
         Tienda 3D
       </h1>
     </div>
-    <div className="navbar-actions">
-      <div className="cart-icon-container" onClick={goToCart}>
-        <span className="cart-icon">🛒</span>
-        {carrito.length > 0 && (
-          <span className="cart-badge">{carrito.length}</span>
-        )}
-      </div>
 
+    <button 
+      className="hamburger-menu"
+      onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+    >
+       ☰
+    </button>
+
+    <div className={`navbar-actions ${mobileMenuOpen ? "open" : "" }`}>
+    
       <button className="history-button" id="fav" onClick={() => navigate("/favorite")}>
         🤍 Favoritos
+      </button>
+
+      <button className="cart-icon-container" onClick={goToCart}>
+          <span className="cart-icon">🛒 Mi carrito</span>
+            {carrito.length > 0 && (
+          <span className="cart-badge">{carrito.length}</span>
+          )}
       </button>
 
       <button className="history-button" onClick={() => navigate("/history")}>
